@@ -1,0 +1,56 @@
+//postfix evaluvation
+
+#include<stdio.h>
+#include<ctype.h>
+int stack[20]; // stack size
+int top=-1; //initializing top to -1
+
+void push(int x) //push function
+{
+  stack[++top]=x;
+}
+
+
+int pop()  //pop function
+{
+ return stack[top--];
+}
+
+int main()
+{
+ char exp[20]; //expression size
+ char *e; // e to store expression
+ int n1,n2,n3,num; //n1 and n2 r the operands n3 to store sum value 
+ printf("enter the number ;");
+ scanf("%s",exp);
+ e=exp; // e is pointing to expression
+ while(*e!='\0')
+ {
+    if(isdigit(*e)) // to check if it is a digit or not 
+    {
+      num=*e-48; 
+      push(num); 
+    }
+    else
+    {
+      n1=pop();  // top operand popes out 
+      n2=pop(); //seconf top operand popes out 
+      switch(*e) // switch to checkthe operator
+      {
+         case'+':n3=n1+n2; //addition
+                 break;
+         case'*':n3=n1*n2; //multiplication
+                 break;
+         case'-':n3=n1-n2; //subtraction
+                 break;
+         case'/':n3=n1/n2; //division
+                 break;                        
+      }
+      push(n3);
+    }
+    e++;
+ }
+ 
+ printf("the result of tghe expression %s=%d",exp,pop());
+ return 0;
+}
