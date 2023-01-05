@@ -1,0 +1,26 @@
+//tower of hanoi
+
+#include<stdio.h>
+void tow(int,char,char,char);
+int main()
+{
+  int num;
+  printf("enter the no of disks\n");
+  scanf("%d",&num);
+  printf("the sixe of moves involved\n");
+  tow(num,'A','C','B');
+  return 0;
+}
+
+
+void tow(int num,char frompeg,char topeg,char auxpeg)
+{
+  if(num==1)
+  {
+   printf("move disk 1 from peg %c to peg %c",frompeg,topeg);
+   return;
+  }
+  tow(num-1,frompeg,auxpeg,topeg);
+  printf("move disk %d from peg %c to peg %c \n",num,frompeg,topeg);
+  tow(num-1,auxpeg,topeg,frompeg);
+}
